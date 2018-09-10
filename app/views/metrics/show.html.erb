@@ -14,3 +14,15 @@ Unique Pageviews: <%= @summary.unique_pageviews %>
 
 Pageviews: <%= @summary.pageviews %>
 <%= render_chart @summary.pageviews_series %>
+
+<%= form_for('date', :url => "/metrics#{@summary.base_path}?", :method => :get) do |f| %>
+  <div class="field">
+    <%= radio_button_tag(:date_range, 'last-30-days', checked = true, label: 'Last 30 Days') %> Last 30 Days <br>
+    <%= radio_button_tag(:date_range, 'last-month', ch1cked = false, label: 'Last Month') %> Last Month <br>
+    <%= radio_button_tag(:date_range, 'last-3-months', checked = false, label: 'Last 3 Months') %> Last 3 Months <br>
+    <%= radio_button_tag(:date_range, 'last-6-months', checked = false, label: 'Last 6 Month') %> Last 6 Months <br>
+    <%= radio_button_tag(:date_range, 'last-1-year', checked = false, label: 'Last Year') %> Last 1 Year <br>
+    <%= radio_button_tag(:date_range, 'last-2-years', checked = false, label: 'Last 2 Years') %> Last 2 Years <br>
+    <%= submit_tag 'OK' %>
+  </div>
+<% end %>

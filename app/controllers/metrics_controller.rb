@@ -1,13 +1,19 @@
 class MetricsController < ApplicationController
+  include Concerns::DateRangeParser
+
   DEFAULT_METRICS = %w[pageviews unique_pageviews number_of_internal_searches].freeze
 
   def show
     service = MetricsService.new
 
+    date_range = parse_date_range(params[:date_range])
+    from = date_range[:from]
+    to = date_range[:to]
+
     service_params = {
       base_path: params[:base_path],
-      from: params[:from],
-      to: params[:to],
+      from: from,
+      to: to,
       metrics: DEFAULT_METRICS
     }
 
