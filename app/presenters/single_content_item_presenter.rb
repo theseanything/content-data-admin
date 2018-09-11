@@ -1,7 +1,7 @@
 class SingleContentItemPresenter
   attr_reader :unique_pageviews, :pageviews, :unique_pageviews_series,
     :pageviews_series, :base_path, :title, :published_at, :last_updated,
-    :publishing_organisation, :document_type
+    :publishing_organisation, :document_type, :date_range
 
   def self.parse_metrics(metrics)
     new.parse_metrics(metrics.deep_symbolize_keys)
@@ -22,6 +22,11 @@ class SingleContentItemPresenter
   def parse_time_series(time_series)
     @unique_pageviews_series = ChartPresenter.new(json: time_series, metric: :unique_pageviews)
     @pageviews_series = ChartPresenter.new(json: time_series, metric: :pageviews)
+    self
+  end
+
+  def set_date_range(date_range)
+    @date_range = date_range
     self
   end
 

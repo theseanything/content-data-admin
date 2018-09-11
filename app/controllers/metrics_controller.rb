@@ -20,6 +20,7 @@ class MetricsController < ApplicationController
     @summary = SingleContentItemPresenter
       .parse_metrics(service.fetch(service_params))
       .parse_time_series(service.fetch_time_series(service_params))
+      .set_date_range(params[:date_range])
   end
 
   rescue_from GdsApi::HTTPNotFound do
