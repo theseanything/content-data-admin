@@ -39,14 +39,11 @@ class ChartPresenter
   end
 
   def keys
-
     return [] unless time_series
 
     time_series.map do |point|
-       point[:date]
+      point[:date].to_date.strftime("%m-%d")
     end
-    # dates = json[metric].map { |hash| hash[:date] }
-    # dates.map { |date| date.last(5) }
   end
 
   def values

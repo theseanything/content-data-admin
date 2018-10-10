@@ -116,11 +116,11 @@ module GdsApi
       end
 
       def default_single_page_payload(base_path, from, to)
-        from_date = Time.zone.parse(from)
-        to_date = Time.zone.parse(to)
-        day1 = (from_date - 1.day).to_s('%F')
-        day2 = (from_date - 2.days).to_s('%F')
-        day3 = (to_date + 1.day).to_s('%F')
+        from_date = Date.parse(from)
+        to_date = Date.parse(to)
+        day1 = (from_date - 1.day).to_s
+        day2 = (from_date - 2.days).to_s
+        day3 = (to_date + 1.day).to_s
         {
           metadata: {
             title:  "Content Title",
