@@ -2,8 +2,8 @@ RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
   let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction] }
-  let(:from) { Time.zone.today - 30.days }
-  let(:to) { Time.zone.today }
+  let(:from) { Date.today - 30.days }
+  let(:to) { Date.today }
   let(:month_and_date_string_for_date1) { (from - 1.day).to_s.last(5) }
   let(:month_and_date_string_for_date2) { (from - 2.days).to_s.last(5) }
   let(:month_and_date_string_for_date3) { (to + 1.day).to_s.last(5) }
@@ -26,19 +26,19 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders the metric for upviews' do
-      expect(page).to have_selector '.metric_summary.upviews', text: '145,000'
+      expect(page).to have_selector '.metric_summary.upviews', text: '33'
     end
 
     it 'renders the metric for pviews' do
-      expect(page).to have_selector '.metric_summary.pviews', text: '200,000'
+      expect(page).to have_selector '.metric_summary.pviews', text: '60'
     end
 
     it 'renders a metric for satisfaction' do
-      expect(page).to have_selector '.metric_summary.satisfaction', text: '26'
+      expect(page).to have_selector '.metric_summary.satisfaction', text: '90'
     end
 
     it 'renders a metric for feedex' do
-      expect(page).to have_selector '.metric_summary.feedex', text: '20'
+      expect(page).to have_selector '.metric_summary.feedex', text: '63'
     end
 
     it 'renders a metric for pdf_count' do
@@ -54,11 +54,11 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders a metric for on page searches' do
-      expect(page).to have_selector '.metric_summary.searches', text: '250'
+      expect(page).to have_selector '.metric_summary.searches', text: '24'
     end
 
     it 'renders the publishing application' do
-      expect(page).to have_selector '.related-actions', text: 'Whitehall'
+      expect(page).to have_selector '.related-actions', text: 'Publisher'
     end
 
     it 'renders the metadata' do
@@ -66,9 +66,9 @@ RSpec.describe '/metrics/base/path', type: :feature do
         el.all('dt,dd').map(&:text)
       end
       expect(metadata).to eq([
-        [I18n.t("components.metadata.labels.published_at"), '1 February 2018',
-         I18n.t("components.metadata.labels.last_updated"), '25 April 2018'],
-        [I18n.t("components.metadata.labels.publishing_organisation"), 'The ministry',
+        [I18n.t("components.metadata.labels.published_at"), '17 July 2018',
+         I18n.t("components.metadata.labels.last_updated"), '17 July 2018'],
+        [I18n.t("components.metadata.labels.publishing_organisation"), 'The Ministry',
          I18n.t("components.metadata.labels.document_type"), 'News story',
          I18n.t("components.metadata.labels.base_path"), '/.../path']
       ])

@@ -124,7 +124,7 @@ module GdsApi
         {
           metadata: {
             title:  "Content Title",
-            base_path:  "#{base_path}",
+            base_path:  "/#{base_path}",
             first_published_at:  "2018-07-17T10:35:59.000Z",
             public_updated_at:  "2018-07-17T10:35:57.000Z",
             publishing_app:  "publisher",
@@ -174,7 +174,7 @@ module GdsApi
             },
             {
               name: "satisfaction",
-              total: 0.9000,
+              total: 0.9,
               time_series: [
                 { "date" => day1, "value" => 1.0000 },
                 { "date" => day2, "value" => 0.9000 },

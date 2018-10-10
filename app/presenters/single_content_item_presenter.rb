@@ -16,9 +16,7 @@ class SingleContentItemPresenter
     @single_page_data = single_page_data
     @date_range = date_range
     @metrics = {}
-    # @chart_metric_names = ['pviews', 'upviews', 'satisfaction', 'searches', 'feedex']
-    # @glance_metric_names = ['upviews', 'satisfaction', 'searches', 'feedex']
-    # @metrics = metrics
+
     get_metadata
     parse_metrics
     parse_time_series
@@ -55,19 +53,18 @@ private
 
     @single_page_data[:edition_metrics].each do |metric|
       @metrics[metric[:name]] = {
-        'value': format_metric_value(metric[:name], metric[:total]),
+        'value': format_metric_value(metric[:name], metric[:value]),
         'time_series': nil
       }
     end
 
-    @pdf_count = @metrics['pdf_count']['value']
-    @words = @metrics['words']['value']
-
-    @upviews = format_metric_value(:upviews, @metrics[:upviews])
-    @pviews = format_metric_value(:pviews, @metrics[:pviews])
-    @feedex = format_metric_value(:feedex, @metrics[:feedex])
-    @searches = format_metric_value(:searches, @metrics[:searches])
-    @satisfaction = format_metric_headline_figure(:satisfaction, @metrics[:satisfaction])
+    @pdf_count = @metrics['pdf_count'][:value]
+    @words = @metrics['words'][:value]
+    @upviews = format_metric_value('upviews', @metrics['upviews'][:value])
+    @pviews = format_metric_value('pviews', @metrics['pviews'][:value])
+    @feedex = format_metric_value('feedex', @metrics['feedex'][:value])
+    @searches = format_metric_value('searches', @metrics['searches'][:value])
+    @satisfaction = format_metric_value('satisfaction', @metrics['satisfaction'][:value])
   end
 
   def parse_time_series

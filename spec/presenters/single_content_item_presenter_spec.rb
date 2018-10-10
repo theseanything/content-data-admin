@@ -3,23 +3,7 @@ RSpec.describe SingleContentItemPresenter do
 
   let(:from) { '2018-01-01' }
   let(:to) { '2018-06-01' }
-
-  let(:metrics) do
-    {
-        title: 'The title',
-        base_path: '/the/base/path',
-        primary_organisation_title: 'UK Visas and Immigration',
-        first_published_at: '2016-09-01T00:00:00.000Z',
-        public_updated_at: '2017-10-01T00:00:00.000Z',
-        document_type: 'news_story',
-        upviews: 2030,
-        pviews: 3000,
-        satisfaction: 33.5,
-        searches: 120,
-        feedex: 20,
-    }
-  end
-  let(:single_page_data) { default_single_page_payload('/the/base/path', from, to) }
+  let(:single_page_data) { default_single_page_payload('the/base/path', from, to) }
   let(:date_range) { build(:date_range, :last_30_days) }
 
   subject do
