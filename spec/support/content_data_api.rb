@@ -118,10 +118,13 @@ module GdsApi
       def default_single_page_payload(base_path, from, to)
         from_date = Time.zone.parse(from)
         to_date = Time.zone.parse(to)
+        day1 = (from_date - 1.day).to_s('%F')
+        day2 = (from_date - 2.days).to_s('%F')
+        day3 = (to_date + 1.day).to_s('%F')
         {
           metadata: {
             title:  "Content Title",
-            base_path:  "/#{base_path}",
+            base_path:  "#{base_path}",
             first_published_at:  "2018-07-17T10:35:59.000Z",
             public_updated_at:  "2018-07-17T10:35:57.000Z",
             publishing_app:  "publisher",
@@ -137,45 +140,45 @@ module GdsApi
               name: "upviews",
               total: 33,
               time_series: [
-                { "date" => (from_date - 1.day).to_s, "value" => 1 },
-                { "date" => (from_date - 2.days).to_s, "value" => 2 },
-                { "date" => (to_date + 1.day).to_s, "value" => 30 }
+                { "date" => day1, "value" => 1 },
+                { "date" => day2, "value" => 2 },
+                { "date" => day3, "value" => 30 }
               ]
             },
             {
               name: "pviews",
               total: 60,
               time_series: [
-                { "date" => (from_date - 1.day).to_s, "value" => 10 },
-                { "date" => (from_date - 2.days).to_s, "value" => 20 },
-                { "date" => (to_date + 1.day).to_s, "value" => 30 }
+                { "date" => day1, "value" => 10 },
+                { "date" => day2, "value" => 20 },
+                { "date" => day3, "value" => 30 }
               ]
             },
             {
               name: "searches",
               total: 24,
               time_series: [
-                { "date" => (from_date - 1.day).to_s, "value" => 8 },
-                { "date" => (from_date - 2.days).to_s, "value" => 8 },
-                { "date" => (to_date + 1.day).to_s, "value" => 8 }
+                { "date" => day1, "value" => 8 },
+                { "date" => day2, "value" => 8 },
+                { "date" => day3, "value" => 8 }
               ]
             },
             {
               name: "feedex",
               total: 63,
               time_series: [
-                { "date" => (from_date - 1.day).to_s, "value" => 20 },
-                { "date" => (from_date - 2.days).to_s, "value" => 21 },
-                { "date" => (to_date + 1.day).to_s, "value" => 22 }
+                { "date" => day1, "value" => 20 },
+                { "date" => day2, "value" => 21 },
+                { "date" => day3, "value" => 22 }
               ]
             },
             {
               name: "satisfaction",
               total: 0.9000,
               time_series: [
-                { "date" => (from_date - 1.day).to_s, "value" => 1.0000 },
-                { "date" => (from_date - 2.days).to_s, "value" => 0.9000 },
-                { "date" => (to_date + 1.day).to_s, "value" => 0.80000 }
+                { "date" => day1, "value" => 1.0000 },
+                { "date" => day2, "value" => 0.9000 },
+                { "date" => day3, "value" => 0.80000 }
               ]
             }
           ],
