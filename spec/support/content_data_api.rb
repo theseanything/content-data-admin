@@ -55,6 +55,8 @@ module GdsApi
           upviews: 145_000,
           pviews: 200_000,
           satisfaction: 25.55,
+          useful_yes: 4,
+          useful_no: 20,
           searches: 250,
           feedex: 20,
           pdf_count: 3,

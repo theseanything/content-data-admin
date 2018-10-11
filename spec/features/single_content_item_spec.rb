@@ -1,7 +1,7 @@
 RSpec.describe '/metrics/base/path', type: :feature do
   include GdsApi::TestHelpers::ContentDataApi
   include TableDataSpecHelpers
-  let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction] }
+  let(:metrics) { %w[pviews upviews searches feedex words pdf_count satisfaction useful_yes useful_no] }
   let(:from) { Time.zone.today - 30.days }
   let(:to) { Time.zone.today }
   let(:month_and_date_string_for_date1) { (from - 1.day).to_s.last(5) }
@@ -31,6 +31,10 @@ RSpec.describe '/metrics/base/path', type: :feature do
     end
 
     it 'renders a metric for satisfaction' do
+      expect(page).to have_selector '.metric_summary.satisfaction', text: '26'
+    end
+
+    it 'renders the total number of respondents for satisfaction score' do
       expect(page).to have_selector '.metric_summary.satisfaction', text: '26'
     end
 
