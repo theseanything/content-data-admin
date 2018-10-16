@@ -3,6 +3,9 @@ $govuk-global-styles: true;
 // gem components
 @import 'govuk_publishing_components/all_components';
 
+@import "govuk-frontend/overrides/all";
+@import "govuk-frontend/utilities/all";
+
 // local components
 @import "components/chart";
 @import "components/glance-metric";
